@@ -4,3 +4,171 @@
 *:after {
   box-sizing: border-box;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.siteName a {
+  text-decoration: none;
+  color: #242333;
+  padding: 14px 20px;
+  display: block;
+}
+
+h1 {
+  margin: 0px;
+}
+
+#tools {
+  float: right;
+}
+
+#tools > a {
+  text-decoration: none;
+  color: #000;
+  padding: 14px 20px;
+  display: block;
+}
+
+nav {
+  background-color: #242333;
+  overflow: hidden;
+}
+
+nav > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+nav > ul > li {
+  color: #fff;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+nav > ul > li.active {
+  background-color: #4b4870;
+}
+
+nav > ul > li:hover {
+  background-color: #38364f;
+  cursor: pointer;
+}
+
+h2 {
+  margin: 0px;
+}
+
+section {
+  padding: 1rem;
+}
+
+section > ul > li {
+  padding: 0.5rem 0;
+}
+
+#hero-container {
+  position: relative;
+  margin-top: 1rem;
+}
+
+#hero-container > img {
+  width: 100%;
+  height: auto;
+}
+
+#hero-container > div {
+  position: absolute;
+  top: 0;
+  background-color: rgba(36, 35, 51, 0.7);
+  color: #fff;
+  padding: 1rem;
+}
+
+#hero-container > div > h3 {
+  margin: 0;
+}
+
+#hero-container > div > p {
+  margin: 0.5rem 0 0 0;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  background-color: #242333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #4b4870;
+}
+
+.upgrades {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+figure {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 0px;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+figure > img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+figure figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: rgba(36, 35, 51, 0.8);
+  color: #fff;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+figure figcaption:hover {
+  background-color: rgba(36, 35, 51, 0.9);
+}
+
+figure figcaption > a {
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+footer {
+  padding: 1rem;
+}
