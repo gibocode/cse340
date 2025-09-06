@@ -12,6 +12,10 @@ body {
   background-color: #fff;
 }
 
+header, footer {
+  background-color: #fff;
+}
+
 #top-header {
   display: flex;
   justify-content: space-between;
@@ -67,6 +71,17 @@ nav > ul > li:hover {
   cursor: pointer;
 }
 
+main {
+  background-color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-areas:
+    "hero"
+    "reviews"
+    "upgrades";
+}
+
 h2 {
   margin: 0px;
 }
@@ -77,6 +92,18 @@ section {
 
 section > ul > li {
   padding: 0.5rem 0;
+}
+
+.hero-section {
+  grid-area: hero;
+}
+
+.reviews-section {
+  grid-area: reviews;
+}
+
+.upgrades-section {
+  grid-area: upgrades;
 }
 
 #hero-container {
@@ -122,7 +149,8 @@ section > ul > li {
 
 .upgrades {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-top: 1rem;
 }
@@ -171,4 +199,16 @@ figure figcaption > a {
 
 footer {
   padding: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    background-image: url('../images/site/small_check.jpg');
+  }
+  main {
+    padding: 1rem;
+    grid-template-areas:
+      "hero hero"
+      "upgrades reviews";
+  }
 }
