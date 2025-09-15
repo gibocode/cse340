@@ -58,7 +58,6 @@ nav > ul {
 }
 
 nav > ul > li {
-  color: #fff;
   padding: 1rem;
   transition: all 0.3s ease;
 }
@@ -70,6 +69,11 @@ nav > ul > li.active {
 nav > ul > li:hover {
   background-color: #38364f;
   cursor: pointer;
+}
+
+nav > ul > li > a {
+  color: #fff;
+  text-decoration: none;
 }
 
 main {
@@ -211,5 +215,8 @@ footer {
     grid-template-areas:
       "hero hero"
       "upgrades reviews";
+  }
+  nav > ul > li {
+    padding: 1rem 2rem;
   }
 }
