@@ -1,9 +1,16 @@
-<!-- Content Heading -->
-<% if (title) { %>
-<h1><%= title %></h1>
-<% } else {
-    res.redirect('/')
-} %>
+<% if (!title) res.redirect('/') %>
 
-<!-- Message Block -->
-<%= message %>
+<div class="error-content">
+    <h1><%= title %></h1>
+    <div>
+        <%= message %>
+    </div>
+    <div>
+        <% if (status == 404) { %>
+            <img src="/images/site/no-car-icon.png" alt="Not Found">
+        <% } else { %>
+            <img src="/images/site/crash.png" alt="Crash">
+        <% } %>
+    </div>
+</div>
+
