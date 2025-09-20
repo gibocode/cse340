@@ -335,6 +335,10 @@ footer {
   font-size: clamp(12px, 2vw, 20px);
 }
 
+.classification-content .namePrice h3 > a {
+  margin-right: 1rem;
+}
+
 .classification-content .namePrice span {
   margin-bottom: 3px;
 }
