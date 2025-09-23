@@ -69,13 +69,13 @@ nav {
 
 .mobile-nav {
   background-color: #242333;
-    border: none;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    margin: 0.5rem;
-    padding: 0 5px;
-    border-radius: 5px;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+  padding: 0 5px;
+  border-radius: 5px;
 }
 
 .mobile-nav:hover {
@@ -306,6 +306,10 @@ footer {
   font-size: 1.3rem;
 }
 
+.classification-content a.btn {
+  font-size: 1.1rem;
+}
+
 .classification-content li > a {
   height: 100%;
   background-color: #fff;
@@ -341,23 +345,6 @@ footer {
 
 .classification-content .namePrice span {
   margin-bottom: 3px;
-}
-
-.classification-content .view-details-button {
-  background-color: #4b476e;
-  color: white;
-  width: 100%;
-  display: block;
-  padding: 1rem;
-  text-align: center;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 6px;
-}
-
-.classification-content .view-details-button:hover {
-  background-color: #38364f;
 }
 
 /* Inventory Item Detail Page */
@@ -478,6 +465,116 @@ footer {
   display: none;
 }
 
+.login-content, .register-content {
+  padding: 1rem;
+}
+
+.login-content h2, .register-content h2 {
+  margin: 1rem;
+}
+
+form {
+  margin: 2rem 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+input {
+  width: 100%;
+  font-size: 18px;
+  padding: 0.7rem;
+  border-radius: 6px;
+  margin-top: 0.3rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid gray;
+}
+
+.btn {
+  background-color: #4b476e;
+  color: white !important;
+  width: 100%;
+  display: block;
+  padding: 1rem;
+  font-size: 1.1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  box-shadow: none;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #38364f;
+}
+
+.login-content .btn, .register-content .btn {
+  text-transform: uppercase;
+}
+
+.login-content .signup-link, .register-content .required-field-note {
+  margin-top: 2rem;
+  justify-self: end;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 0.5rem 1rem;
+  list-style: none;
+}
+
+.alert-danger {
+  background-color: #ffe6e6;
+  border: 1px solid #ffc9c9;
+  color: #cf3434;
+}
+
+.alert-success {
+  background-color: #ebfbed;
+  border: 1px solid #bbe9ba;
+  color: #229434;
+}
+
+.required-field, .required-field-note {
+  font-size: 18px;
+  color: #c83535;
+  margin-right: 2px;
+}
+
+.input-group {
+  position: relative;
+}
+
+.show-password {
+  position: absolute;
+  right: 0;
+  width: 50px;
+  height: 45px;
+  top: 26px;
+  border-radius: 0 6px 6px 0;
+  color: #fff !important;
+  display: flex;
+  padding: 0.5rem;
+}
+
+.show-password svg {
+  width: 100%;
+}
+
+.input-note {
+  font-size: 13px;
+  color: #6a6a6a;
+  margin-bottom: 1rem;
+  display: block;
+  position: relative;
+  top: -6px;
+}
+
 @media screen and (min-width: 768px) {
   #wrapper {
     display: flex;
@@ -569,5 +666,9 @@ footer {
   .inventory-details-container {
     min-width: 250px;
     align-self: start;
+  }
+  .login-content, .register-content {
+    max-width: 600px;
+    height: fit-content;
   }
 }

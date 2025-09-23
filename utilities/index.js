@@ -49,7 +49,7 @@ Util.buildClassificationGrid = async function(data) {
             grid += '<span>'
             + new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(vehicle.inv_price) + '</span>'
             grid += '</div>'
-            grid += '<div><a class="view-details-button" href="../../inv/detail/' + vehicle.inv_id +'">View Details</a></div>'
+            grid += '<div><a class="btn view-details-button" href="../../inv/detail/' + vehicle.inv_id +'">View Details</a></div>'
             grid += '</div>'
             grid += '</li>'
         })
