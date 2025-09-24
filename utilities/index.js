@@ -6,7 +6,13 @@ const Util = {}
  ************************** */
 Util.getNav = async function (req, res, next) {
     let data = await invModel.getClassifications()
-    let mobile = '<button type="button" class="mobile-nav" aria-label="Mobile Nav Button"></button>'
+    let mobile = `<button type="button" class="mobile-nav" aria-label="Mobile Nav Button">
+            <svg class="mobile-nav-button-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M3,9H29a2,2,0,0,0,0-4H3A2,2,0,0,0,3,9Z"/>
+                <path fill="currentColor" d="M29,14H3a2,2,0,0,0,0,4H29a2,2,0,0,0,0-4Z"/>
+                <path fill="currentColor" d="M29,23H3a2,2,0,0,0,0,4H29a2,2,0,0,0,0-4Z"/>
+            </svg>
+        </button>`
     let list = '<ul class="hide">' +
         '<li class="active"><a href="/" title="Home page">Home</a></li>'
     data.rows.forEach((row) => {
