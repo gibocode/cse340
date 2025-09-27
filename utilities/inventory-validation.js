@@ -79,7 +79,7 @@ validate.inventoryRules = () => {
         body("inv_thumbnail")
             .trim()
             .escape()
-            .notEmpty().withMessage("Provide a vehicle thumnail."),
+            .notEmpty().withMessage("Provide a vehicle thumbnail."),
 
         // Inventory thumbnail
         body("inv_price")
@@ -106,7 +106,7 @@ validate.inventoryRules = () => {
         body("inv_color")
             .trim()
             .escape()
-            .notEmpty().withMessage("Provide a vehicle thumnail."),
+            .notEmpty().withMessage("Provide a vehicle color."),
     ]
 }
 
@@ -130,6 +130,8 @@ validate.checkInvData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
+        const classifications = await invModel.getClassifications()
+        const classificationList = await utilities.buildClassificationList(classification_id)
         res.render("inventory/add-inventory", {
             errors,
             title: "Add Inventory",
@@ -143,7 +145,8 @@ validate.checkInvData = async (req, res, next) => {
             inv_price,
             inv_year,
             inv_miles,
-            inv_color
+            inv_color,
+            classificationList: classificationList
         })
         return
     }

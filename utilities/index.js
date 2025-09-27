@@ -162,12 +162,18 @@ Util.buildManagementView = async function(req, res, next) {
 /* **************************************
 * Build classification input list
 * ************************************ */
-Util.buildClassificationList = async function(classifications) {
+Util.buildClassificationList = async function(classification_id = null) {
     let classificationList = ""
+    const classifications = await invModel.getClassifications()
     const list = classifications.rows
     if (list.length > 0) {
         list.forEach((item) => {
-            classificationList += `<option value="${item.classification_id}">${item.classification_name}</option>`
+            let classId = item.classification_id;
+            classificationList += `<option value="${classId}"`
+            if (classId == classification_id) {
+                classificationList += " selected"
+            }
+            classificationList += `>${item.classification_name}</option>`
         })
     }
     return classificationList;

@@ -91,8 +91,7 @@ invCont.addClassification = async function (req, res, next) {
  * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
     const nav = await utilities.getNav()
-    const classifications = await invModel.getClassifications()
-    const classificationList = await utilities.buildClassificationList(classifications)
+    const classificationList = await utilities.buildClassificationList()
     res.render("./inventory/add-inventory", {
         title: "Add Inventory",
         nav,
@@ -129,6 +128,7 @@ invCont.addInventory = async function (req, res, next) {
         inv_miles,
         inv_color
     )
+    const classificationList = await utilities.buildClassificationList(classification_id)
     const nav = await utilities.getNav()
     if (addResult) {
         req.flash(
@@ -145,6 +145,7 @@ invCont.addInventory = async function (req, res, next) {
             title: "Add Inventory",
             nav,
             errors: null,
+            classificationList: classificationList
         })
     }
 }
