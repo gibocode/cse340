@@ -42,4 +42,112 @@ validate.checkClassData = async (req, res, next) => {
     next()
 }
 
+/* ************************
+ * Inventory Data Validation Rules
+ ************************** */
+validate.inventoryRules = () => {
+    return [
+        // Inventory classification
+        body("classification_id")
+            .notEmpty().withMessage("Select a vehicle classification."),
+
+        // Inventory make
+        body("inv_make")
+            .trim()
+            .escape()
+            .notEmpty().withMessage("Provide a vehicle make."),
+
+        // Inventory model
+        body("inv_model")
+            .trim()
+            .escape()
+            .notEmpty().withMessage("Provide a vehicle model."),
+
+        // Inventory description
+        body("inv_description")
+            .trim()
+            .escape()
+            .notEmpty().withMessage("Provide a vehicle description."),
+
+        // Inventory image
+        body("inv_image")
+            .trim()
+            .escape()
+            .notEmpty().withMessage("Provide a vehicle image."),
+
+        // Inventory thumbnail
+        body("inv_thumbnail")
+            .trim()
+            .escape()
+            .notEmpty().withMessage("Provide a vehicle thumnail."),
+
+        // Inventory thumbnail
+        body("inv_price")
+            .trim()
+            .escape()
+            .notEmpty().withMessage("Provide a vehicle price.")
+            .isNumeric().withMessage("Please enter a number."),
+
+        // Inventory thumbnail
+        body("inv_year")
+            .trim()
+            .escape()
+            .notEmpty().withMessage("Provide a vehicle year.")
+            .isNumeric().withMessage("Please enter a number."),
+
+        // Inventory thumbnail
+        body("inv_miles")
+            .trim()
+            .escape()
+            .notEmpty().withMessage("Provide a vehicle mileage.")
+            .isNumeric().withMessage("Please enter a number."),
+
+        // Inventory color
+        body("inv_color")
+            .trim()
+            .escape()
+            .notEmpty().withMessage("Provide a vehicle thumnail."),
+    ]
+}
+
+/* ************************
+ * Check data and return errors or continue to add inventory
+ ************************** */
+validate.checkInvData = async (req, res, next) => {
+    const {
+        classification_id,
+        inv_make,
+        inv_model,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_year,
+        inv_miles,
+        inv_color
+    } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        res.render("inventory/add-inventory", {
+            errors,
+            title: "Add Inventory",
+            nav,
+            classification_id,
+            inv_make,
+            inv_model,
+            inv_description,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_year,
+            inv_miles,
+            inv_color
+        })
+        return
+    }
+    next()
+}
+
 module.exports = validate

@@ -12,11 +12,11 @@ invCont.buildByClassificationId = async function (req, res, next) {
     const classification = data[0]
     const grid = await utilities.buildClassificationGrid(data)
     let nav = await utilities.getNav()
-    const className = classification.classification_name
     res.render("./inventory/classification", {
-        title: className + " vehicles",
+        title: (classification) ? `${classification.classification_name} Vehicles` : '',
         nav,
         grid,
+        res,
     })
 }
 
@@ -77,9 +77,72 @@ invCont.addClassification = async function (req, res, next) {
             nav,
         })
     } else {
-        req.flash("alert alert-danger", "Login failed.")
+        req.flash("alert alert-danger", "Could not add classification.")
         res.status(501).render("./inventory/add-classification", {
             title: "Add Classification",
+            nav,
+            errors: null,
+        })
+    }
+}
+
+/* ***************************
+ *  Build add inventory view
+ * ************************** */
+invCont.buildAddInventory = async function (req, res, next) {
+    const nav = await utilities.getNav()
+    const classifications = await invModel.getClassifications()
+    const classificationList = await utilities.buildClassificationList(classifications)
+    res.render("./inventory/add-inventory", {
+        title: "Add Inventory",
+        nav,
+        errors: null,
+        classificationList: classificationList,
+    })
+}
+
+/* ***************************
+ *  Process add inventory
+ * ************************** */
+invCont.addInventory = async function (req, res, next) {
+    const {
+        classification_id,
+        inv_make,
+        inv_model,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_year,
+        inv_miles,
+        inv_color
+    } = req.body
+    const addResult = await invModel.addInventory(
+        classification_id,
+        inv_make,
+        inv_model,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_year,
+        inv_miles,
+        inv_color
+    )
+    const nav = await utilities.getNav()
+    if (addResult) {
+        req.flash(
+            "alert alert-success",
+            `New inventory was successfully added.`
+        )
+        res.status(201).render("./inventory/management", {
+            title: "Vehicle Management",
+            nav,
+        })
+    } else {
+        req.flash("alert alert-danger", "Could not add inventory.")
+        res.status(501).render("./inventory/add-inventory", {
+            title: "Add Inventory",
             nav,
             errors: null,
         })

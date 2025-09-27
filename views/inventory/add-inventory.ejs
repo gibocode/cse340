@@ -1,4 +1,4 @@
-<!-- <div class="add-inventory-content">
+<div class="add-inventory-content">
     <h2><%= title %></h2>
     <div>
         <%- messages() %>
@@ -13,19 +13,52 @@
     <div>
         <form action="/inv/add" method="post">
             <div class="form-group">
-                <label for="classification_name">
-                    <span class="required-field">*</span>Classification Name
-                    <input type="text" id="classification_name" name="classification_name" required pattern="^[a-zA-Z]+$" value="<%= locals.classification_name %>">
-                    <span class="input-note">Note: Name must be alphabet characters only.</span>
+                <label for="classification_id">
+                    <span class="required-field">*</span>Classification
+                    <select id="classification_id" name="classification_id" required>
+                        <option selected disabled value="">Choose a Classification</option>
+                        <%- classificationList %>
+                    </select>
                 </label>
                 <label for="inv_make">
-                    <span class="required-field">*</span>Classification Name
-                    <input type="text" id="inv_make" name="inv_make" required pattern="^[a-zA-Z]+$" value="<%= locals.classification_name %>">
-                    <span class="input-note">Note: Name must be alphabet characters only.</span>
+                    <span class="required-field">*</span>Make
+                    <input type="text" id="inv_make" name="inv_make" required value="<%= locals.inv_make %>">
+                </label>
+                <label for="inv_model">
+                    <span class="required-field">*</span>Model
+                    <input type="text" id="inv_model" name="inv_model" required value="<%= locals.inv_model %>">
+                </label>
+                <label for="inv_description">
+                    <span class="required-field">*</span>Description
+                    <textarea id="inv_description" name="inv_description" required><%= locals.inv_description %></textarea>
+                </label>
+                <label for="inv_image">
+                    <span class="required-field">*</span>Image Path
+                    <input type="text" id="inv_image" name="inv_image" required value="/images/vehicles/no-image.png">
+                </label>
+                <label for="inv_thumbnail">
+                    <span class="required-field">*</span>Thumbnail Path
+                    <input type="text" id="inv_thumbnail" name="inv_thumbnail" required value="/images/vehicles/no-image.png">
+                </label>
+                <label for="inv_price">
+                    <span class="required-field">*</span>Price
+                    <input type="number" id="inv_price" name="inv_price" required value="<%= locals.inv_price %>" min="1" step="any">
+                </label>
+                <label for="inv_year">
+                    <span class="required-field">*</span>Year
+                    <input type="number" id="inv_year" name="inv_year" required value="<%= locals.inv_year %>" step="1">
+                </label>
+                <label for="inv_miles">
+                    <span class="required-field">*</span>Miles
+                    <input type="number" id="inv_miles" name="inv_miles" required value="<%= locals.inv_miles %>">
+                </label>
+                <label for="inv_color">
+                    <span class="required-field">*</span>Color
+                    <input type="text" id="inv_color" name="inv_color" required value="<%= locals.inv_color %>">
                 </label>
             </div>
-            <button type="submit" class="btn add-classification-button">Add Classification</button>
+            <button type="submit" class="btn add-inventory-button">Add Inventory</button>
             <div class="required-field-note">* required fields</div>
         </form>
     </div>
-</div> -->
+</div>
