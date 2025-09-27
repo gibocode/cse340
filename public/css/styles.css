@@ -549,6 +549,7 @@ input {
   border-radius: 6px;
   box-shadow: none;
   border: none;
+  text-decoration: none;
 }
 
 .btn:hover {
@@ -559,7 +560,7 @@ input {
   text-transform: uppercase;
 }
 
-.login-content .signup-link, .register-content .required-field-note {
+.login-content .signup-link, .register-content .required-field-note, .add-classification-content .required-field-note {
   margin-top: 2rem;
   justify-self: end;
 }
@@ -619,6 +620,32 @@ input {
   display: block;
   position: relative;
   top: -6px;
+}
+
+.management-content, .add-classification-content {
+  margin: 1rem;
+  padding: 1rem;
+  height: fit-content;
+  max-width: 500px;
+}
+
+.management-content div:last-child {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  padding: 1rem;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.management-content .btn {
+  display: flex;
+  align-items: center;
+}
+
+.management-content .btn svg {
+  width: 40px;
+  margin-right: 1rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -683,6 +710,7 @@ input {
     margin-top: 1rem;
   }
   .home-content {
+    margin: 1rem auto;
     padding-bottom: 2rem;
     grid-template-areas:
       "hero hero"
@@ -725,5 +753,9 @@ input {
   .login-content, .register-content {
     max-width: 600px;
     height: fit-content;
+  }
+  .management-content, .add-classification-content {
+    margin: 1rem auto;
+    padding: 2rem;
   }
 }

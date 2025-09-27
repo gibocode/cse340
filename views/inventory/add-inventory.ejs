@@ -1,0 +1,31 @@
+<!-- <div class="add-inventory-content">
+    <h2><%= title %></h2>
+    <div>
+        <%- messages() %>
+        <% if (errors) { %>
+            <ul class="alert alert-danger">
+                <% errors.array({ onlyFirstError: true }).forEach(error => { %>
+                    <li><%= error.msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </div>
+    <div>
+        <form action="/inv/add" method="post">
+            <div class="form-group">
+                <label for="classification_name">
+                    <span class="required-field">*</span>Classification Name
+                    <input type="text" id="classification_name" name="classification_name" required pattern="^[a-zA-Z]+$" value="<%= locals.classification_name %>">
+                    <span class="input-note">Note: Name must be alphabet characters only.</span>
+                </label>
+                <label for="inv_make">
+                    <span class="required-field">*</span>Classification Name
+                    <input type="text" id="inv_make" name="inv_make" required pattern="^[a-zA-Z]+$" value="<%= locals.classification_name %>">
+                    <span class="input-note">Note: Name must be alphabet characters only.</span>
+                </label>
+            </div>
+            <button type="submit" class="btn add-classification-button">Add Classification</button>
+            <div class="required-field-note">* required fields</div>
+        </form>
+    </div>
+</div> -->

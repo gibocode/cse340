@@ -138,6 +138,27 @@ Util.buildInventoryItemDetailView = async function(item) {
     return content;
 }
 
+/* **************************************
+* Build management view HTML
+* ************************************ */
+Util.buildManagementView = async function(req, res, next) {
+    const content = `<div>
+        <a class="btn" href="/inv/classification/add">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm10 22h-8v8h-4v-8h-8v-4h8v-8h4v8h8v4z"/>
+            </svg>
+            Add New Classification
+        </a>
+        <a class="btn" href="/inv/add">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm10 22h-8v8h-4v-8h-8v-4h8v-8h4v8h8v4z"/>
+            </svg>
+            Add New Vehicle
+        </a>
+    </div>`;
+    return content;
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for
