@@ -82,21 +82,30 @@ h2 {
 #tools {
   background-color: #ededed;
   width: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 8px;
 }
 
 #tools > a {
-  display: flex;
-  justify-self: end;
   text-decoration: none;
   color: #000;
   padding: 14px 20px;
-  display: block;
   width: fit-content;
+  height: -webkit-fill-available;
   transition: all 0.3s ease-in-out;
+  background-color: #e4e4e4;
+  align-content: center;
+  text-wrap: nowrap;
 }
 
 #tools > a:hover {
-  background-color: rgb(207, 207, 207);
+  background-color: #cfcfcf;
+}
+
+#tools > div {
+  padding: 1rem;
 }
 
 nav {
@@ -568,6 +577,14 @@ input, select, textarea {
   cursor: not-allowed;
 }
 
+.btn-danger {
+  background-color: #a22626;
+}
+
+.btn-danger:hover {
+  background-color: #c34141;
+}
+
 .login-content .btn, .register-content .btn {
   text-transform: uppercase;
 }
@@ -634,7 +651,7 @@ input, select, textarea {
   top: -6px;
 }
 
-.management-content, .add-classification-content, .add-inventory-content, .edit-classification-content, .edit-inventory-content {
+.management-content, .add-classification-content, .add-inventory-content, .edit-inventory-content, .delete-inventory-content {
   margin: 1rem;
   padding: 1rem;
   height: fit-content;
@@ -769,7 +786,7 @@ input, select, textarea {
     max-width: 600px;
     height: fit-content;
   }
-  .management-content, .add-classification-content, .add-inventory-content, .management-content, .edit-classification-content, .edit-inventory-content {
+  .management-content, .add-classification-content, .add-inventory-content, .management-content, .edit-inventory-content, .delete-inventory-content {
     margin: 1rem auto;
     padding: 2rem;
     max-width: 700px;

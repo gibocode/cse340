@@ -14,6 +14,9 @@ router.get("/register", utilities.handleErrors(accountController.buildRegister))
 // Route to build account view
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccount));
 
+// Route to process logout
+router.get("/logout", accountController.logoutAccount);
+
 // Process the login attempt
 router.post(
     "/login",
