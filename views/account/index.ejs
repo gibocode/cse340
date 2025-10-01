@@ -1,0 +1,17 @@
+<div class="account-content">
+    <h2><%= title %></h2>
+    <div>
+        <%- messages() %>
+        <% if (errors) { %>
+            <ul class="alert alert-danger">
+                <% errors.array({ onlyFirstError: true }).forEach(error => { %>
+                    <li><%= error.msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </div>
+    <div>
+        <h3>Hello <%= locals.accountData.account_firstname %>!</h3>
+        <p>You're logged in.</p>
+    </div>
+</div>

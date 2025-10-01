@@ -515,11 +515,11 @@ footer {
   display: none;
 }
 
-.login-content, .register-content {
+.login-content, .register-content, .account-content {
   padding: 1rem;
 }
 
-.login-content h2, .register-content h2 {
+.login-content h2, .register-content h2, .account-content h2 {
   margin: 1rem;
 }
 
@@ -561,6 +561,11 @@ input, select, textarea {
 
 .btn:hover {
   background-color: #38364f;
+}
+
+.btn:disabled {
+  background-color: #b9b9b9;
+  cursor: not-allowed;
 }
 
 .login-content .btn, .register-content .btn {
@@ -629,7 +634,7 @@ input, select, textarea {
   top: -6px;
 }
 
-.management-content, .add-classification-content, .add-inventory-content {
+.management-content, .add-classification-content, .add-inventory-content, .edit-classification-content, .edit-inventory-content {
   margin: 1rem;
   padding: 1rem;
   height: fit-content;
@@ -652,6 +657,10 @@ input, select, textarea {
 .management-content .btn svg {
   width: 40px;
   margin-right: 1rem;
+}
+
+.management-content div p {
+  margin: 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -760,7 +769,7 @@ input, select, textarea {
     max-width: 600px;
     height: fit-content;
   }
-  .management-content, .add-classification-content, .add-inventory-content {
+  .management-content, .add-classification-content, .add-inventory-content, .management-content, .edit-classification-content, .edit-inventory-content {
     margin: 1rem auto;
     padding: 2rem;
     max-width: 700px;

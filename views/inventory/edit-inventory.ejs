@@ -1,4 +1,4 @@
-<div class="add-inventory-content">
+<div class="edit-inventory-content">
     <h2><%= title %></h2>
     <div>
         <%- messages() %>
@@ -11,8 +11,9 @@
         <% } %>
     </div>
     <div>
-        <form action="/inv/add" method="post">
+        <form action="/inv/update" method="post" id="updateForm">
             <div class="form-group">
+                <input type="hidden" name="inv_id" <% if (locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
                 <label for="classificationList">
                     <span class="required-field">*</span>Classification
                     <%- classificationList %>
@@ -54,8 +55,9 @@
                     <input type="text" id="inv_color" name="inv_color" required value="<%= locals.inv_color %>">
                 </label>
             </div>
-            <button type="submit" class="btn add-inventory-button">Add Inventory</button>
+            <button type="submit" class="btn update-inventory-button" disabled>Update Inventory</button>
             <div class="required-field-note">* required fields</div>
         </form>
+        <script src="../../js/inv-update.js"></script>
     </div>
 </div>

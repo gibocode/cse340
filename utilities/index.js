@@ -1,5 +1,7 @@
+const jwt = require("jsonwebtoken")
 const invModel = require("../models/inventory-model")
 const Util = {}
+require("dotenv").config()
 
 /* ************************
  * Constructs the nav HTML unordered list
@@ -163,7 +165,8 @@ Util.buildManagementView = async function(req, res, next) {
 * Build classification input list
 * ************************************ */
 Util.buildClassificationList = async function(classification_id = null) {
-    let classificationList = ""
+    let classificationList = `<select id="classificationList" name="classification_id" required>
+        <option selected disabled value="">Choose a Classification</option>`
     const classifications = await invModel.getClassifications()
     const list = classifications.rows
     if (list.length > 0) {
@@ -176,7 +179,44 @@ Util.buildClassificationList = async function(classification_id = null) {
             classificationList += `>${item.classification_name}</option>`
         })
     }
+    classificationList += "</select>"
     return classificationList;
+}
+
+/* **************************************
+* Middleware to check token validity
+* ************************************ */
+Util.checkJWTToken = function(req, res, next) {
+    if (req.cookies.jwt) {
+        jwt.verify(
+            req.cookies.jwt,
+            process.env.ACCESS_TOKEN_SECRET,
+            function (err, accountData) {
+                if (err) {
+                    req.flash("Please log in")
+                    res.clearCookie("jwt")
+                    return res.redirect("/account/login")
+                }
+                res.locals.accountData = accountData
+                res.locals.loggedin = 1
+                next()
+            }
+        )
+    } else {
+        next()
+    }
+}
+
+/* **************************************
+* Check login
+* ************************************ */
+Util.checkLogin = (req, res, next) => {
+    if (res.locals.loggedin) {
+        next()
+    } else {
+        req.flash("alert alert-danger", "Please log in.")
+        return res.redirect("/account/login")
+    }
 }
 
 /* ****************************************
