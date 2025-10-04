@@ -77,6 +77,14 @@ h1 {
 h2 {
   font-size: 2rem;
   color: #242333;
+  display: flex
+;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+h2 > svg {
+  width: 3rem;
 }
 
 #tools {
@@ -105,7 +113,8 @@ h2 {
 }
 
 #tools > div {
-  padding: 1rem;
+  padding: 0.5rem 1rem;
+  text-align: right;
 }
 
 nav {
@@ -521,15 +530,19 @@ footer {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
-.login-content, .register-content, .account-content {
+.login-content, .register-content, .account-content, .edit-account-content {
   padding: 1rem;
 }
 
-.login-content h2, .register-content h2, .account-content h2 {
+.login-content h2, .register-content h2, .account-content h2, .edit-account-content h2 {
   margin: 1rem;
+}
+
+.account-content > div:last-of-type, .edit-account-content > div:last-of-type {
+  margin: 0 2rem 2rem;
 }
 
 form {
@@ -587,6 +600,20 @@ input, select, textarea {
 
 .login-content .btn, .register-content .btn {
   text-transform: uppercase;
+}
+
+.btn-sm {
+  font-size: 1rem;
+  width: fit-content;
+  padding: 0.5rem 0.7rem;
+  display: flex;
+  align-items: center;
+}
+
+.btn-sm > svg {
+  width: 25px !important;
+  height: 25px !important;
+  margin-right: 0.5rem !important;
 }
 
 .login-content .signup-link, .required-field-note {
@@ -680,13 +707,94 @@ input, select, textarea {
   margin: 0;
 }
 
+.table {
+  border: none;
+  border-spacing: 0;
+}
+
+.table td {
+  padding: 0.2rem 1rem;
+  border: none;
+}
+
+.table-stripes tbody tr:nth-child(odd) {
+  background-color: #e4e4e4;
+}
+
+.dropdown {
+  text-decoration: none;
+  color: #000;
+  padding: 0.5rem !important;
+  width: fit-content;
+  height: -webkit-fill-available;
+  transition: all 0.3s ease-in-out;
+  background-color: #e4e4e4;
+  text-wrap: nowrap;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+}
+
+.dropdown:hover {
+  background-color: #cfcfcf;
+}
+
+.dropdown:active {
+  background-color: #e4e4e4;
+}
+
+.icon {
+  width: 2.5rem;
+}
+
+.dropdown-items {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 0.5rem 0;
+  position: absolute;
+  right: 0;
+  top: 56px;
+  z-index: 1;
+  box-shadow: 6px 8px 10px #6868681f;
+}
+
+.dropdown-items a {
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: block;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  text-align: left;
+  color: #242333;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dropdown-items a > svg {
+  width: 1.5rem;
+}
+
+.dropdown-items a:hover {
+  background-color: #d4d4d4;
+}
+
+.dropdown-items a:hover {
+  background-color: #e0e0e0;
+}
+
 @media screen and (min-width: 768px) {
   #wrapper {
     display: flex;
     flex-direction: column;
     height: 100vh;
   }
-  header, nav, footer {
+  header {
+    z-index: 2;
+  }
+  nav, footer {
     z-index: 1;
   }
   .mobile-nav {
@@ -710,7 +818,7 @@ input, select, textarea {
   }
   /* override when switching from mobile */
   nav > ul.hide {
-    display: flex;
+    display: flex !important;
   }
   main {
     padding: 1rem;
@@ -782,13 +890,17 @@ input, select, textarea {
     min-width: 250px;
     align-self: start;
   }
-  .login-content, .register-content {
+  .login-content, .register-content, .account-content {
     max-width: 600px;
     height: fit-content;
   }
   .management-content, .add-classification-content, .add-inventory-content, .management-content, .edit-inventory-content, .delete-inventory-content {
     margin: 1rem auto;
     padding: 2rem;
+    max-width: 700px;
+  }
+  .account-content,  .edit-account-content {
+    margin: 1rem auto;
     max-width: 700px;
   }
 }

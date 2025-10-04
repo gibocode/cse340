@@ -219,6 +219,18 @@ Util.checkLogin = (req, res, next) => {
     }
 }
 
+/* **************************************
+* Check acount type
+* ************************************ */
+Util.checkAccountType = (req, res, next) => {
+    if (res.locals.loggedin == 1 && (res.locals.accountData.account_type == "Employee" || res.locals.accountData.account_type == "Admin")) {
+        next()
+    } else {
+        req.flash("alert alert-danger", "This must NOT be used when delivering the classification or detail views as they are meant for site visitors who may not be logged in.")
+        return res.redirect("/account/login")
+    }
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for

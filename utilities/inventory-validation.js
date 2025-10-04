@@ -130,7 +130,6 @@ validate.checkInvData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
-        const classifications = await invModel.getClassifications()
         const classificationList = await utilities.buildClassificationList(classification_id)
         res.render("inventory/add-inventory", {
             errors,
@@ -248,7 +247,6 @@ validate.checkUpdateData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
-        const classifications = await invModel.getClassifications()
         const classificationList = await utilities.buildClassificationList(classification_id)
         res.render("inventory/edit-inventory", {
             errors,

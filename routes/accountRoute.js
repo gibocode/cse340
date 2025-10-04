@@ -17,6 +17,9 @@ router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.b
 // Route to process logout
 router.get("/logout", accountController.logoutAccount);
 
+// Route to build edit account view
+router.get("/edit/:accountId", utilities.checkLogin, utilities.handleErrors(accountController.buildEditAccount))
+
 // Process the login attempt
 router.post(
     "/login",
@@ -32,5 +35,23 @@ router.post(
     validate.checkRegData,
     utilities.handleErrors(accountController.registerAccount)
 );
+
+// Process to update the account
+router.post(
+    "/update",
+    utilities.checkLogin,
+    validate.updateRules(),
+    validate.checkUpdateData,
+    utilities.handleErrors(accountController.updateAccount)
+);
+
+// Process to update the account password
+router.post(
+    "/password/update",
+    utilities.checkLogin,
+    validate.updatePasswordRules(),
+    validate.checkUpdatePasswordData,
+    utilities.handleErrors(accountController.updatePassword)
+)
 
 module.exports = router;

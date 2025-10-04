@@ -143,4 +143,120 @@ async function logoutAccount(req, res, next) {
     return res.redirect("/account/login")
 }
 
-module.exports = { buildLogin, buildRegister, loginAccount, registerAccount, buildAccount, logoutAccount }
+/* ***************************
+ *  Deliver edit account view
+ * ************************** */
+async function buildEditAccount(req, res, next) {
+    const account_id = parseInt(req.params.accountId)
+    if (res.locals.accountData.account_id === account_id) {
+        const accountData = await accountModel.getAccountById(account_id)
+        res.locals.accountData = accountData
+        const nav = await utilities.getNav()
+        res.render("account/edit", {
+            title: "Edit Account",
+            nav,
+            errors: null,
+            account_id: account_id,
+            account_firstname: accountData.account_firstname,
+            account_lastname: accountData.account_lastname,
+            account_email: accountData.account_email,
+        })
+    } else {
+        next()
+    }
+}
+
+/* ***************************
+ *  Process update account
+ * ************************** */
+async function updateAccount(req, res, next) {
+    const {
+        account_id,
+        account_firstname,
+        account_lastname,
+        account_email
+    } = req.body
+    const updateResult = await accountModel.updateAccount(
+        account_id,
+        account_firstname,
+        account_lastname,
+        account_email
+    )
+    const nav = await utilities.getNav()
+    if (updateResult) {
+        delete updateResult.account_password
+        res.locals.accountData = updateResult
+        req.flash(
+            "alert alert-success",
+            "Congratulations, your information has been updated."
+        )
+        res.render("./account/index", {
+            title: "My Account",
+            nav,
+            errors: null,
+            account_firstname: updateResult.account_firstname
+        })
+    } else {
+        req.flash("alert alert-danger", "Sorry, could not update account.")
+        res.status(501).render("./account/edit", {
+            title: "Edit Account",
+            nav,
+            errors: null,
+            account_id: account_id,
+            account_firstname: account_firstname,
+            account_lastname: account_lastname,
+            account_email: account_email,
+        })
+    }
+}
+
+/* ***************************
+ *  Process update account password
+ * ************************** */
+async function updatePassword(req, res, next) {
+    const {
+        account_id,
+        account_password
+    } = req.body
+    let hashedPassword
+    try {
+        // regular password and cost (salt is generated automatically)
+        hashedPassword = await bcrypt.hashSync(account_password, 10)
+    } catch (error) {
+        req.flash("alert alery-danger", "Sorry, there was an error updating the password.")
+        res.status(500).render("account/edit", {
+            title: "Edit Account",
+            nav,
+            errors: null
+        })
+    }
+    const updateResult = await accountModel.updatePassword(
+        account_id,
+        hashedPassword,
+    )
+    const nav = await utilities.getNav()
+    if (updateResult) {
+        req.flash(
+            "alert alert-success",
+            "Congratulations, your password has been updated."
+        )
+        res.render("./account/index", {
+            title: "My Account",
+            nav,
+            errors: null,
+        })
+    } else {
+        req.flash("alert alert-danger", "Sorry, could not update password.")
+        res.status(501).render("./account/edit", {
+            title: "Edit Account",
+            nav,
+            errors: null,
+            account_id: account_id,
+            account_firstname: account_firstname,
+            account_lastname: account_lastname,
+            account_email: account_email,
+        })
+    }
+}
+
+module.exports = { buildLogin, buildRegister, loginAccount, registerAccount, buildAccount, logoutAccount, buildEditAccount, updateAccount, updatePassword }

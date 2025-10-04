@@ -25,3 +25,13 @@ if (showPasswordButton) {
         }
     })
 }
+
+//
+const dropdownButton = document.querySelector('.dropdown')
+
+if (dropdownButton) {
+    dropdownButton.addEventListener('click', () => {
+        const dropdownItems = document.querySelector('.dropdown-items')
+        dropdownItems.classList.toggle('hide')
+    })
+}
