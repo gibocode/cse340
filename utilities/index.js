@@ -231,6 +231,18 @@ Util.checkAccountType = (req, res, next) => {
     }
 }
 
+/* **************************************
+* Check user admin
+* ************************************ */
+Util.checkAdmin = (req, res, next) => {
+    if (res.locals.loggedin == 1 && (res.locals.accountData.account_type == "Admin")) {
+        next()
+    } else {
+        req.flash("alert alert-danger", "Unauthorized.")
+        return res.redirect("/account/login")
+    }
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for

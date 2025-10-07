@@ -1,0 +1,39 @@
+<div class="edit-user-account-type-content">
+    <h2>
+        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m18.988 2.012 3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287-3-3L8 13z"/>
+            <path d="M19 19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2V19z"/>
+        </svg>
+        <%= title %>
+    </h2>
+    <div>
+        <%- messages() %>
+        <% if (errors) { %>
+            <ul class="alert alert-danger">
+                <% errors.array({ onlyFirstError: true }).forEach(error => { %>
+                    <li><%= error.msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </div>
+    <div>
+        <form action="/user/update-account-type" method="post">
+            <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+            <div class="form-group">
+                <div>Name</div>
+                <div class="font-bold mb-1 font-lg"><%= locals.account_firstname %> <%= locals.account_lastname %></div>
+                <label for="account_type">
+                    <span class="required-field">*</span>Account Type
+                    <select id="account_type" name="account_type" required>
+                        <option value="" <% if (!locals.account_type) { %>selected<% } %> disabled>Select Account Type</option>
+                        <option value="Admin" <% if (locals.account_type == "Admin") { %>selected<% } %>>Admin</option>
+                        <option value="Employee" <% if (locals.account_type == "Employee") { %>selected<% } %>>Employee</option>
+                        <option value="Client" <% if (locals.account_type == "Client") { %>selected<% } %>>Client</option>
+                    </select>
+                </label>
+            </div>
+            <button type="submit" class="btn update-user-button">Update Account Type</button>
+            <div class="required-field-note">* required fields</div>
+        </form>
+    </div>
+</div>

@@ -678,13 +678,19 @@ input, select, textarea {
   top: -6px;
 }
 
-.management-content, .add-classification-content, .add-inventory-content, .edit-inventory-content, .delete-inventory-content {
+.management-content,
+.add-classification-content,
+.add-inventory-content,
+.edit-inventory-content,
+.delete-inventory-content,
+.user-content,
+.edit-user-account-type-content {
   margin: 1rem;
   padding: 1rem;
   height: fit-content;
 }
 
-.management-content div:last-child {
+.management-content div:last-child, .user-content div:last-child {
   display: flex;
   flex-direction: column;
   font-size: 18px;
@@ -783,6 +789,50 @@ input, select, textarea {
 
 .dropdown-items a:hover {
   background-color: #e0e0e0;
+}
+
+#userDisplay thead th {
+  text-align: left;
+}
+
+#userDisplay tbody tr td:last-of-type {
+  display: flex;
+  justify-content: center;
+}
+
+.font-bold {
+  font-weight: 600 !important;
+}
+
+.mb-1 {
+  margin-bottom: 1rem !important;
+}
+
+.font-lg {
+  font-size: 1.5rem;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #e0e0e0;
+  border-top-color: #4b4870;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 50px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @media screen and (min-width: 768px) {
@@ -894,7 +944,14 @@ input, select, textarea {
     max-width: 600px;
     height: fit-content;
   }
-  .management-content, .add-classification-content, .add-inventory-content, .management-content, .edit-inventory-content, .delete-inventory-content {
+  .management-content,
+  .add-classification-content,
+  .add-inventory-content,
+  .management-content,
+  .edit-inventory-content,
+  .delete-inventory-content,
+  .user-content,
+  .edit-user-account-type-content {
     margin: 1rem auto;
     padding: 2rem;
     max-width: 700px;
