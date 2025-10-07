@@ -18,7 +18,11 @@ validate.updateAccountTypeRules = () => {
  * Check data and return errors when updating account type
  ************************** */
 validate.checkUpdateAccountTypeData = async (req, res, next) => {
-    const account_id = req.body.account_id
+    const {
+        account_id,
+        account_firstname,
+        account_lastname,
+    } = req.body
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -28,6 +32,8 @@ validate.checkUpdateAccountTypeData = async (req, res, next) => {
             title: "Edit Account Type",
             nav,
             account_id,
+            account_firstname,
+            account_lastname,
         })
     }
     next()

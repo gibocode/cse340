@@ -17,8 +17,10 @@
         <% } %>
     </div>
     <div>
-        <form action="/user/update-account-type" method="post">
+        <form action="/user/update-account-type" method="post" id="updateAccountTypeForm">
             <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+            <input type="hidden" name="account_firstname" value="<%= locals.account_firstname %>">
+            <input type="hidden" name="account_lastname" value="<%= locals.account_lastname %>">
             <div class="form-group">
                 <div>Name</div>
                 <div class="font-bold mb-1 font-lg"><%= locals.account_firstname %> <%= locals.account_lastname %></div>
@@ -32,8 +34,9 @@
                     </select>
                 </label>
             </div>
-            <button type="submit" class="btn update-user-button">Update Account Type</button>
+            <button type="submit" class="btn update-account-type-button" disabled>Update Account Type</button>
             <div class="required-field-note">* required fields</div>
         </form>
+        <script src="../../js/account-type-update.js" defer></script>
     </div>
 </div>

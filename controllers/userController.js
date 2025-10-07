@@ -49,11 +49,13 @@ userCont.buildEditUserAccountType = async function (req, res, next) {
 userCont.updateAccountType = async function (req, res, next) {
     const {
         account_id,
-        account_type
+        account_type,
+        account_firstname,
+        account_lastname,
     } = req.body
     const updateResult = await userModel.updateAccountType(
         account_id,
-        account_type
+        account_type,
     )
     if (updateResult) {
         req.flash(
@@ -70,6 +72,8 @@ userCont.updateAccountType = async function (req, res, next) {
             errors: null,
             account_id,
             account_type,
+            account_firstname,
+            account_lastname,
         })
     }
 }
