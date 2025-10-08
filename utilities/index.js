@@ -7,6 +7,12 @@ require("dotenv").config()
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
+    let activeClass = 0
+    if (typeof req != 'undefined') {
+        if (req.originalUrl.includes("/inv/type/")) {
+            activeClass = req.params.classificationId
+        }
+    }
     let data = await invModel.getClassifications()
     let mobile = `<button type="button" class="mobile-nav" aria-label="Mobile Nav Button">
             <svg class="mobile-nav-button-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -15,11 +21,17 @@ Util.getNav = async function (req, res, next) {
                 <path fill="currentColor" d="M29,23H3a2,2,0,0,0,0,4H29a2,2,0,0,0,0-4Z"/>
             </svg>
         </button>`
-    let list = '<ul class="hide">' +
-        '<li class="active"><a href="/" title="Home page">Home</a></li>'
+    let list = '<ul class="hide"><li'
+    if (activeClass == 0) {
+        list += ' class="active"'
+    }
+    list += '><a href="/" title="Home page">Home</a></li>'
     data.rows.forEach((row) => {
-        list += "<li>"
-        list +=
+        list += "<li"
+        if (row.classification_id == activeClass) {
+            list += ' class="active"'
+        }
+        list += ">" +
             '<a href="/inv/type/' +
             row.classification_id +
             '" title="See our inventory of ' +
